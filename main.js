@@ -65,4 +65,36 @@ const buildCard = (arr) => {
     printToDom('pie-zone', domString)
 }
 
-buildCard(pies);
+// Creating another function to filter animals
+// e stands for the details of the event
+const filterPies = (e) => {
+    // create an empty array to give me a container to put in filtered animals
+    let tastyPies = []
+    // just seeing if it worked and to see the event listener details
+    console.log(e.target.id);
+    // running loop to iterate over parameter
+    for (let i = 0; i < pies.length; i++) {
+        // measuring to see if conditional meets test
+        if (e.target.id === pies[i].instructor) {
+            // if statement is true add animal to the correct value
+            tastyPies.push(pies[i]);
+        }
+
+    }
+
+buildCard(tastyPies);
+}
+
+// creating variable to gain control of when the event listeners are activated
+const activateEvents = () => {
+    document.getElementById('callan').addEventListener('click', filterPies)
+    document.getElementById('zoe').addEventListener('click', filterPies)
+    document.getElementById('michael').addEventListener('click', filterPies)
+    // added additional function to bring all pets back; not filtering
+    // document.getElementById('all').addEventListener('click', () => {
+        buildCard(pies)
+    // }) 
+}
+
+// calling the function to activate listeners
+activateEvents();
